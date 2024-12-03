@@ -1,0 +1,1 @@
+# gaiax-credentials-assistant-cli
