@@ -18,6 +18,7 @@ def assert_step(success: bool, message: str, error_message: str = None):
     if success:
         typer.secho(f"✅ {message}", fg=typer.colors.GREEN)
     else:
+        # Custom call to the LLM Assistant
         typer.secho(f"❌  {error_message or 'An error occurred.'}", fg=typer.colors.RED)
 
 @app.callback(invoke_without_command=True)
@@ -99,6 +100,7 @@ def generate_self_description():
         with open(output_file, "w") as f:
             f.write("{}")  # Dummy JSON content
         assert_step(True, f"Self-Description generated successfully and saved at {output_file}.")
+        # Call to LLM Assistant in order to explain the Self-Description in a human-friendly way
     except Exception as e:
         assert_step(False, "", f"Failed to generate Self-Description. Error: {e}")
         return
